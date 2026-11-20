@@ -10,7 +10,8 @@
 param(
     [Parameter(Mandatory = $true)][string]$User,
     [Parameter(Mandatory = $true)][string]$Repo,
-    [switch]$SkipBuild   # reuse an existing build\web (already built with -BaseHref /<repo>/app/)
+    [switch]$SkipBuild,       # reuse an existing build\web (already built with -BaseHref /<repo>/app/)
+    [switch]$DirectDownload   # link the download button straight to the release zip (once attached)
 )
 
 $ErrorActionPreference = "Stop"
@@ -25,7 +26,9 @@ if (-not $SkipBuild) {
 # 2. the home page, with the app inside it
 $site = Join-Path $proj "build\site"
 if (Test-Path $site) { Remove-Item -Recurse -Force $site }
-python (Join-Path $proj "tools\build_site.py") --user $User --repo $Repo --out $site
+$siteArgs = @("--user", $User, "--repo", $Repo, "--out", $site)
+if ($DirectDownload) { $siteArgs += "--direct-download" }
+python (Join-Path $proj "tools\build_site.py") @siteArgs
 if ($LASTEXITCODE -ne 0) { throw "Site build failed" }
 New-Item -ItemType Directory -Force (Join-Path $site "app") | Out-Null
 Copy-Item (Join-Path $proj "build\web\*") (Join-Path $site "app") -Recurse -Force

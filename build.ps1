@@ -47,7 +47,9 @@ try {
         if (-not $BaseHref.StartsWith("/")) { $BaseHref = "/$BaseHref" }
         if (-not $BaseHref.EndsWith("/")) { $BaseHref = "$BaseHref/" }
         Remove-Dirs @("build\web")
-        flutter build web --release --base-href $BaseHref --no-wasm-dry-run
+        # --no-web-resources-cdn: load the rendering engine (CanvasKit) from the site itself
+        # rather than from Google's CDN – one host to reach, and nothing for a filter to block.
+        flutter build web --release --base-href $BaseHref --no-wasm-dry-run --no-web-resources-cdn
         # GitHub Pages runs Jekyll by default, which skips some files; turn it off.
         New-Item -ItemType File -Force (Join-Path $work "build\web\.nojekyll") | Out-Null
         Write-Host "Web ($BaseHref): $proj\build\web"
