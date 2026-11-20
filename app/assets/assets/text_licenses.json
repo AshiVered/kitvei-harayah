@@ -1,0 +1,302 @@
+[
+ {
+  "group": "אמונה",
+  "book": "אדר היקר",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/אדר_היקר"
+   }
+  ]
+ },
+ {
+  "group": "אמונה",
+  "book": "אורות",
+  "editions": [
+   {
+    "title": "ויקיטקסט",
+    "titleEn": "Wikisource",
+    "license": "CC-BY-SA",
+    "source": "http://he.wikisource.org"
+   }
+  ]
+ },
+ {
+  "group": "אמונה",
+  "book": "אורות האמונה",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/אורות_האמונה"
+   }
+  ]
+ },
+ {
+  "group": "אמונה",
+  "book": "אורות הקודש",
+  "editions": [
+   {
+    "title": "Orot HaKodesh -- Wikitext",
+    "titleEn": "",
+    "license": "CC-BY-SA",
+    "source": "http://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%95%D7%AA_%D7%94%D7%A7%D7%95%D7%93%D7%A9_%D7%90"
+   }
+  ]
+ },
+ {
+  "group": "אמונה",
+  "book": "אורות התורה",
+  "editions": [
+   {
+    "title": "אורות התורה -- ויקיטקסט",
+    "titleEn": "Orot HaTorah -- Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%95%D7%AA_%D7%94%D7%AA%D7%95%D7%A8%D7%94"
+   }
+  ]
+ },
+ {
+  "group": "אמונה",
+  "book": "אורות התשובה",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/אורות_התשובה"
+   }
+  ]
+ },
+ {
+  "group": "אמונה",
+  "book": "חבש פאר",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/חבש_פאר"
+   }
+  ]
+ },
+ {
+  "group": "אמונה",
+  "book": "חזון הצמחונות והשלום",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/חזון_הצמחונות_והשלום"
+   }
+  ]
+ },
+ {
+  "group": "אמונה",
+  "book": "עין איה",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/עין_איה"
+   }
+  ]
+ },
+ {
+  "group": "אמונה",
+  "book": "ראש מילין",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/ראש_מילין"
+   }
+  ]
+ },
+ {
+  "group": "קבצים ופנקסים",
+  "book": "ערפלי טוהר",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/ערפלי_טוהר"
+   }
+  ]
+ },
+ {
+  "group": "קבצים ופנקסים",
+  "book": "פנקס יג",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/קבצים_מכתב_יד_קדשו_–_פנקס_\"ראשון_ליפו\""
+   }
+  ]
+ },
+ {
+  "group": "קבצים ופנקסים",
+  "book": "קבצים מכתב יד קדשו",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/קבצים_מכתב_יד_קדשו"
+   }
+  ]
+ },
+ {
+  "group": "קבצים ופנקסים",
+  "book": "קבצים מכתב יד קדשו כרך ב",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/קבצים_מכתב_יד_קדשו_כרך_ב"
+   }
+  ]
+ },
+ {
+  "group": "קבצים ופנקסים",
+  "book": "שמונה קבצים",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/שמונה_קבצים"
+   }
+  ]
+ },
+ {
+  "group": "מוסר ומידות",
+  "book": "מוסר אביך",
+  "editions": [
+   {
+    "title": "Jerusalem, 1946",
+    "titleEn": "",
+    "license": "Public Domain",
+    "source": "https://he.wikisource.org/wiki/%D7%9E%D7%95%D7%A1%D7%A8_%D7%90%D7%91%D7%99%D7%9A"
+   }
+  ]
+ },
+ {
+  "group": "מוסר ומידות",
+  "book": "מידות הראי״ה",
+  "editions": [
+   {
+    "title": "Rav Kook public files",
+    "titleEn": "",
+    "license": "Public Domain",
+    "source": "http://sefaria.org"
+   }
+  ]
+ },
+ {
+  "group": "תפילה ומועדים",
+  "book": "עולת ראי״ה",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/עולת_ראי\"ה"
+   }
+  ]
+ },
+ {
+  "group": "דרשות ומאמרים",
+  "book": "מאמר הדור",
+  "editions": [
+   {
+    "title": "מאמר הדור -- ויקיטקסט",
+    "titleEn": "Maamar Hador -- Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/%D7%9E%D7%90%D7%9E%D7%A8_%D7%94%D7%93%D7%95%D7%A8"
+   }
+  ]
+ },
+ {
+  "group": "דרשות ומאמרים",
+  "book": "מאמרי הראי״ה",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/מאמרי_הראיה"
+   }
+  ]
+ },
+ {
+  "group": "דרשות ומאמרים",
+  "book": "מדבר שור",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/מדבר_שור"
+   }
+  ]
+ },
+ {
+  "group": "אגרות",
+  "book": "אגרות הראיה ה",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/אגרות_הראיה_ה"
+   }
+  ]
+ },
+ {
+  "group": "אגרות",
+  "book": "אגרות הראי״ה",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/אגרות_הראי\"ה"
+   }
+  ]
+ },
+ {
+  "group": "הלכה",
+  "book": "עץ הדר",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/עץ_הדר"
+   }
+  ]
+ },
+ {
+  "group": "הלכה",
+  "book": "שבת הארץ",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/שבת_הארץ"
+   }
+  ]
+ }
+]
