@@ -7,7 +7,10 @@ public-domain photo (Library of Congress, npcc.25595); run tools/make_portrait.p
 Usage: python tools/make_icon.py
 Writes assets/icon/icon.png, windows/runner/resources/app_icon.ico and web icons.
 """
+import base64
+import io
 import os
+import re
 import sys
 
 from PIL import Image
@@ -33,6 +36,14 @@ def main():
             im = icon.resize((size, size), Image.LANCZOS)
             im.save(os.path.join(web, "icons", f"Icon-{size}.png"))
             im.save(os.path.join(web, "icons", f"Icon-maskable-{size}.png"))
+        # The loading screen embeds the icon (data URI), so it appears instantly with the page.
+        buf = io.BytesIO()
+        icon.resize((176, 176), Image.LANCZOS).save(buf, format="PNG", optimize=True)
+        uri = "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
+        index = os.path.join(web, "index.html")
+        page = open(index, encoding="utf-8").read()
+        page = re.sub(r'(<img id="loading-icon" src=")[^"]*(")', lambda m: m.group(1) + uri + m.group(2), page)
+        open(index, "w", encoding="utf-8").write(page)
     print("icon written")
 
 
