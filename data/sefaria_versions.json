@@ -1,0 +1,142 @@
+{
+ "sefaria-orot": [
+  {
+   "versionTitle": "Wikisource",
+   "versionTitleHe": "ויקיטקסט",
+   "license": "CC-BY-SA",
+   "source": "http://he.wikisource.org"
+  }
+ ],
+ "sefaria-orot-hakodesh": [
+  {
+   "versionTitle": "Orot HaKodesh -- Wikitext",
+   "versionTitleHe": "",
+   "license": "CC-BY-SA",
+   "source": "http://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%95%D7%AA_%D7%94%D7%A7%D7%95%D7%93%D7%A9_%D7%90"
+  }
+ ],
+ "sefaria-orot-hateshuvah": [
+  {
+   "versionTitle": "Orot HaTeshuvah -- Wikisource",
+   "versionTitleHe": "",
+   "license": "unknown",
+   "source": "https://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%95%D7%AA_%D7%94%D7%AA%D7%A9%D7%95%D7%91%D7%94"
+  }
+ ],
+ "sefaria-orot-hatorah": [
+  {
+   "versionTitle": "Orot HaTorah -- Wikisource",
+   "versionTitleHe": "אורות התורה -- ויקיטקסט",
+   "license": "CC-BY-SA",
+   "source": "https://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%95%D7%AA_%D7%94%D7%AA%D7%95%D7%A8%D7%94"
+  }
+ ],
+ "sefaria-shemonah-kevatzim": [
+  {
+   "versionTitle": "Rav Kook public files",
+   "versionTitleHe": "",
+   "license": "unknown",
+   "source": "Yehoshua Kahan collection"
+  },
+  {
+   "versionTitle": "Shmonah Kevatzim -- Wikisource",
+   "versionTitleHe": "",
+   "license": "unknown",
+   "source": "http://he.wikisource.org/wiki/%D7%A9%D7%9E%D7%95%D7%A0%D7%94_%D7%A7%D7%91%D7%A6%D7%99%D7%9D_%D7%A7%D7%95%D7%91%D7%A5_%D7%94#.D7.A7.D7.96"
+  },
+  {
+   "versionTitle": "Selected Paragraphs from Arfilei Tohar, trans. Yaacov Dovid Shulman",
+   "versionTitleHe": "ליקוטים מספר ערפלי טוהר, תורגם ע״י יעקב דוד שולמן",
+   "license": "unknown",
+   "source": "http://orot-yerushalaim.org/books/Arfilei_Tohar.pdf"
+  }
+ ],
+ "sefaria-olat-reiyah": [
+  {
+   "versionTitle": "Rav Kook public files",
+   "versionTitleHe": "",
+   "license": "unknown",
+   "source": "http://www.sefaria.org/"
+  },
+  {
+   "versionTitle": "(סידור עם פירוש עולת ראיה (ליקוטים",
+   "versionTitleHe": "",
+   "license": "unknown",
+   "source": "(סידור עם פירוש עולת ראיה (ליקוטים"
+  }
+ ],
+ "sefaria-ein-ayah": [
+  {
+   "versionTitle": "Rav Kook Digitized Texts",
+   "versionTitleHe": "",
+   "license": "unknown",
+   "source": "Anonymously Distributed Collection"
+  },
+  {
+   "versionTitle": "Ein Ayah Wikitext",
+   "versionTitleHe": "",
+   "license": "unknown",
+   "source": "http://he.wikisource.org/wiki/%D7%A2%D7%99%D7%9F_%D7%90%D7%99%D7%94/%D7%94%D7%A7%D7%93%D7%9E%D7%94"
+  },
+  {
+   "versionTitle": "עין איה על ברכות ה ז",
+   "versionTitleHe": "",
+   "license": "CC-BY-SA",
+   "source": "https://he.wikisource.org/wiki/%D7%A2%D7%99%D7%9F_%D7%90%D7%99%D7%94_%D7%A2%D7%9C_%D7%91%D7%A8%D7%9B%D7%95%D7%AA_%D7%94_%D7%96"
+  }
+ ],
+ "sefaria-middot-hara-ayah": [
+  {
+   "versionTitle": "Rav Kook public files",
+   "versionTitleHe": "",
+   "license": "Public Domain",
+   "source": "http://sefaria.org"
+  }
+ ],
+ "sefaria-musar-avikha": [
+  {
+   "versionTitle": "Jerusalem, 1946",
+   "versionTitleHe": "",
+   "license": "Public Domain",
+   "source": "https://he.wikisource.org/wiki/%D7%9E%D7%95%D7%A1%D7%A8_%D7%90%D7%91%D7%99%D7%9A"
+  }
+ ],
+ "sefaria-midbar-shur": [
+  {
+   "versionTitle": "Midbar Shur",
+   "versionTitleHe": "",
+   "license": "Public Domain",
+   "source": "https://he.wikisource.org/wiki/%D7%9E%D7%93%D7%91%D7%A8_%D7%A9%D7%95%D7%A8"
+  }
+ ],
+ "sefaria-ma-amar-hador": [
+  {
+   "versionTitle": "Maamar Hador -- Wikisource",
+   "versionTitleHe": "מאמר הדור -- ויקיטקסט",
+   "license": "CC-BY-SA",
+   "source": "https://he.wikisource.org/wiki/%D7%9E%D7%90%D7%9E%D7%A8_%D7%94%D7%93%D7%95%D7%A8"
+  }
+ ],
+ "sefaria-for-the-perplexed-of-the-generation": [
+  {
+   "versionTitle": "Harav Kook- leNevuchai Hazeman ",
+   "versionTitleHe": "",
+   "license": "unknown",
+   "source": "http://kavvanah.files.wordpress.com/2010/05/kook-nevuchai.pdf"
+  }
+ ],
+ "sefaria-shabbat-haaretz": [
+  {
+   "versionTitle": "Jerusalem, 1937",
+   "versionTitleHe": "",
+   "license": "unknown",
+   "source": "https://www.nli.org.il/he/books/NNL_ALEPH002054045/NLI"
+  },
+  {
+   "versionTitle": "Rav Kook’s Introduction to Shabbat Ha’aretz, Hazon, NY 2014",
+   "versionTitleHe": "",
+   "license": "CC-BY-NC",
+   "source": "https://www.nli.org.il/he/books/NNL_ALEPH003779208/NLI"
+  }
+ ]
+}

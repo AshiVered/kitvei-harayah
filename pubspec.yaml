@@ -1,0 +1,79 @@
+name: kitvei_harayah
+description: "כתבי הראי״ה – free offline library of Rav Kook's writings"
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 0.2.0+6
+
+environment:
+  sdk: ^3.14.0
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  material_ui: ^1.1.0
+
+  shared_preferences: ^2.5.6
+  scrollable_positioned_list: ^0.3.8
+  url_launcher: ^6.3.3
+  flutter_localizations:
+    sdk: flutter
+  file_selector: ^1.1.0
+  archive: ^4.7.1
+  web: ^1.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^6.0.0
+  integration_test:
+    sdk: flutter
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/catalog.json
+    - assets/books/
+    - assets/text_licenses.json
+    - assets/icon/icon.png
+    - assets/fonts/OFL-FrankRuhlLibre.txt
+    - assets/fonts/OFL-DavidLibre.txt
+    - assets/fonts/OFL-Heebo.txt
+
+  fonts:
+    - family: FrankRuhlLibre
+      fonts:
+        - asset: assets/fonts/FrankRuhlLibre.ttf
+    - family: Heebo
+      fonts:
+        - asset: assets/fonts/Heebo.ttf
+    - family: DavidLibre
+      fonts:
+        - asset: assets/fonts/DavidLibre-Regular.ttf
+        - asset: assets/fonts/DavidLibre-Bold.ttf
+          weight: 700
