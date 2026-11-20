@@ -29,12 +29,17 @@ def main():
     ap.add_argument("--user", required=True)
     ap.add_argument("--repo", required=True)
     ap.add_argument("--out", default=os.path.join(ROOT, "build", "site"))
+    ap.add_argument("--direct-download", action="store_true", help="link the button straight to the release zip")
     a = ap.parse_args()
 
     version = re.search(r"^version:\s*([0-9.]+)", open(os.path.join(ROOT, "pubspec.yaml"), encoding="utf-8").read(), re.M).group(1)
     repo_url = f"https://github.com/{a.user}/{a.repo}"
     asset = f"KitveiHaRaayah-{version}-windows-x64.zip"
-    download_url = f"{repo_url}/releases/download/v{version}/{asset}"
+    # The release page (always valid); pass --direct-download once the zip is attached to the release.
+    if a.direct_download:
+        download_url = f"{repo_url}/releases/download/v{version}/{asset}"
+    else:
+        download_url = f"{repo_url}/releases/tag/v{version}"
 
     cat = json.load(open(os.path.join(ROOT, "assets", "catalog.json"), encoding="utf-8"))
     # Balanced columns, like the app's home page: each card goes to the shortest column.
