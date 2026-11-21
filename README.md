@@ -6,7 +6,7 @@
 
 ספריית כתבי מרן הרב אברהם יצחק הכהן קוק זצ״ל – תוכנה חינמית למחשב ואתר, עם חיפוש מלא בכל הספרים.
 
-**[⬇ הורדה ל-Windows](../../releases/latest)** · **[🌐 גרסה מקוונת](https://AshiVered.github.io/kitvei-harayah/app/)** · **[אתר התוכנה](https://AshiVered.github.io/kitvei-harayah/)**
+**[⬇ הורדה ל-Windows](../../releases/latest)** · **[🌐 גרסה מקוונת](https://aiv-dev.com/kitvei-harayah/app/)** · **[אתר התוכנה](https://aiv-dev.com/kitvei-harayah/)**
 
 ## מה יש בתוכנה
 
