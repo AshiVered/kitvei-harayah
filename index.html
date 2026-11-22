@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>כתבי הראי״ה – ספריית כתבי הרב קוק</title>
+<meta name="description" content="תוכנה חינמית לקריאה וחיפוש בכתבי מרן הרב אברהם יצחק הכהן קוק זצ״ל – להורדה למחשב או לשימוש באתר.">
+<link rel="icon" type="image/png" href="assets/icon-64.png">
+<meta property="og:title" content="כתבי הראי״ה">
+<meta property="og:description" content="ספריית כתבי מרן הרב אברהם יצחק הכהן קוק זצ״ל, עם חיפוש מלא בכל הספרים.">
+<meta property="og:image" content="assets/icon.png">
+<!-- Fetch the online version in the background, so "פתיחת הגרסה המקוונת" opens almost instantly. -->
+<link rel="prefetch" href="app/main.dart.js">
+<link rel="prefetch" href="app/canvaskit/chromium/canvaskit.js">
+<link rel="prefetch" href="app/canvaskit/chromium/canvaskit.wasm">
+<link rel="prefetch" href="app/assets/assets/catalog.json">
+<style>
+@font-face { font-family: "Frank Ruhl Libre"; src: url("assets/FrankRuhlLibre.ttf") format("truetype"); font-weight: 300 900; font-display: swap; }
+@font-face { font-family: "Heebo"; src: url("assets/Heebo.ttf") format("truetype"); font-weight: 100 900; font-display: swap; }
+
+:root {
+  --window: #16181D; --panel: #1D2026; --page: #202329; --border: #30343C;
+  --ink: #E4DFD3; --muted: #959086; --accent: #D6B46A; --gold: #D6B46A;
+  --activity: #111318; --on-activity: #CFC9BC; --on-gold: #1A1407;
+  --shadow: 0 18px 50px rgba(0,0,0,.45);
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --window: #EDEAE3; --panel: #F7F5F0; --page: #FFFDF8; --border: #D9D2C5;
+    --ink: #2A241D; --muted: #7A6F62; --accent: #1F3A63; --gold: #B08B3A;
+    --activity: #1C2B47; --on-activity: #E9E4D8; --on-gold: #FFFFFF;
+    --shadow: 0 18px 50px rgba(28,43,71,.18);
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--window); color: var(--ink);
+  font-family: "Segoe UI", "Heebo", system-ui, sans-serif; font-size: 16px; line-height: 1.6;
+}
+a { color: inherit; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+/* top bar – like the app's activity bar */
+.bar { background: var(--activity); color: var(--on-activity); }
+.bar .wrap { display: flex; align-items: center; gap: 12px; height: 52px; }
+.bar img { width: 32px; height: 32px; border-radius: 7px; }
+.bar .name { font-family: "Frank Ruhl Libre", serif; font-weight: 700; font-size: 19px; color: #D6B46A; }
+.bar nav { margin-inline-start: auto; display: flex; gap: 20px; font-size: 14px; }
+.bar nav a { text-decoration: none; opacity: .8; }
+.bar nav a:hover { opacity: 1; }
+
+/* hero – like the app's home page header */
+.hero { padding: 56px 0 28px; }
+.hero h1 {
+  font-family: "Frank Ruhl Libre", serif; font-weight: 800; font-size: clamp(40px, 7vw, 64px);
+  line-height: 1.05; margin: 0; color: var(--accent);
+}
+.hero .sub { font-family: "Frank Ruhl Libre", serif; font-size: clamp(18px, 2.4vw, 22px); color: var(--muted); margin: 6px 0 0; }
+.rule { display: flex; align-items: center; gap: 12px; margin: 18px 0 22px; }
+.rule span { width: 70px; height: 2px; background: var(--gold); }
+.lead { max-width: 640px; margin: 0; font-size: 17px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+  padding: 13px 22px; border-radius: 6px; font-weight: 600; font-size: 16px;
+  border: 1.5px solid var(--gold); transition: transform .12s ease, filter .12s ease;
+}
+.btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.btn.primary { background: var(--gold); color: var(--on-gold); }
+.btn.secondary { color: var(--ink); background: transparent; }
+.btn svg { width: 20px; height: 20px; flex: none; }
+.meta { margin-top: 12px; font-size: 13px; color: var(--muted); }
+
+/* screenshot */
+.shot { margin: 40px 0 8px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); background: var(--page); }
+.shot .chrome { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--activity); color: var(--on-activity); font-size: 13px; }
+.shot .chrome img { width: 16px; height: 16px; border-radius: 3px; }
+.shot > img { display: block; width: 100%; height: auto; }
+
+/* sections */
+h2 { font-size: 17px; font-weight: 700; margin: 52px 0 14px; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.card { background: var(--page); border: 1px solid var(--border); border-radius: 6px; }
+.feature { padding: 16px 18px; }
+.feature h3 { margin: 0 0 4px; font-family: "Frank Ruhl Libre", serif; font-size: 19px; color: var(--accent); }
+.feature p { margin: 0; color: var(--muted); font-size: 14.5px; }
+
+/* library – balanced columns like the app */
+.library { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: start; }
+.library .col { display: flex; flex-direction: column; gap: 14px; }
+@media (max-width: 860px) { .library { grid-template-columns: 1fr; } }
+.cat header { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.cat header b { font-family: "Frank Ruhl Libre", serif; font-size: 18px; color: var(--accent); }
+.cat header i { font-style: normal; color: var(--gold); }
+.cat ul { list-style: none; margin: 0; padding: 4px 0; }
+.cat li a { display: flex; gap: 8px; padding: 5px 14px; text-decoration: none; font-size: 15px; }
+.cat li a::before { content: "›"; color: var(--gold); }
+.cat li a:hover { background: var(--panel); color: var(--accent); }
+
+footer { margin-top: 60px; padding: 28px 0 40px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+footer p { margin: 0 0 8px; }
+footer a { color: var(--ink); }
+
+@media (max-width: 600px) {
+  .bar nav { display: none; }
+  .hero { padding-top: 36px; }
+  .btn { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="wrap">
+    <img src="assets/icon-64.png" alt="">
+    <span class="name">כתבי הראי״ה</span>
+    <nav>
+      <a href="#library">הספרייה</a>
+      <a href="https://github.com/AshiVered/kitvei-harayah/releases">גרסאות</a>
+      <a href="https://github.com/AshiVered/kitvei-harayah">קוד מקור</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>כתבי הראי״ה</h1>
+    <p class="sub">ספרי מרן הרב אברהם יצחק הכהן קוק זצ״ל</p>
+    <div class="rule"><span></span></div>
+    <p class="lead">ספרייה חינמית של כתבי הרב, עם חיפוש מלא בכל הספרים, קריאה נוחה, הערות אישיות וסימניות.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://github.com/AshiVered/kitvei-harayah/releases/download/v0.2.1/KitveiHaRaayah-0.2.1-windows-x64.zip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        הורדה ל-Windows
+      </a>
+      <a class="btn secondary" href="app/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg>
+        פתיחת הגרסה המקוונת
+      </a>
+    </div>
+    <p class="meta">גרסה 0.2.1 (טרום־הפצה) · Windows 64-bit · ללא התקנה · עובדת בלי אינטרנט</p>
+  </section>
+
+  <figure class="shot card" style="margin-inline:0">
+    <div class="chrome"><img src="assets/icon-64.png" alt="">כתבי הראי״ה</div>
+    <img src="assets/screenshot-reader.png" alt="צילום מסך: ספר אורות פתוח בתוכנה, עם תוכן העניינים בצד" width="1582" height="903" loading="lazy">
+  </figure>
+
+  <h2>מה בתוכנה</h2>
+  <div class="features">
+    <div class="card feature"><h3>חיפוש מלא</h3><p>בכל הספרים בבת אחת, ללא תלות בניקוד ובגרשיים.</p></div>
+    <div class="card feature"><h3>קריאה נוחה</h3><p>לשוניות, תוכן עניינים, ניקוד לבחירה, גופנים וערכה בהירה או כהה.</p></div>
+    <div class="card feature"><h3>הערות וסימניות</h3><p>מסמנים טקסט, קליק ימני ← „הוספת הערה”. ממשיכים מהמקום שבו הפסקתם.</p></div>
+    <div class="card feature"><h3>בלי אינטרנט</h3><p>כל הספרים כלולים בתוכנה. גיבוי וייבוא של הנתונים האישיים בקובץ.</p></div>
+  </div>
+
+  <h2 id="library">הספרייה</h2>
+  <div class="library">
+    <div class="col">
+      <section class="card cat">
+        <header><i>☀</i><b>אמונה</b></header>
+        <ul>
+        <li><a href="app/">אדר היקר</a></li>
+        <li><a href="app/">אורות</a></li>
+        <li><a href="app/">אורות האמונה</a></li>
+        <li><a href="app/">אורות הקודש</a></li>
+        <li><a href="app/">אורות התורה</a></li>
+        <li><a href="app/">אורות התשובה</a></li>
+        <li><a href="app/">חבש פאר</a></li>
+        <li><a href="app/">חזון הצמחונות והשלום</a></li>
+        <li><a href="app/">עין איה</a></li>
+        <li><a href="app/">עקבי הצאן</a></li>
+        <li><a href="app/">ראש מילין</a></li>
+        </ul>
+      </section>
+      <section class="card cat">
+        <header><i>⚖</i><b>הלכה</b></header>
+        <ul>
+        <li><a href="app/">עץ הדר</a></li>
+        <li><a href="app/">שבת הארץ</a></li>
+        </ul>
+      </section>
+    </div>
+    <div class="col">
+      <section class="card cat">
+        <header><i>✎</i><b>קבצים ופנקסים</b></header>
+        <ul>
+        <li><a href="app/">מכתב יד הראי״ה</a></li>
+        <li><a href="app/">ערפלי טוהר</a></li>
+        <li><a href="app/">פנקס יג</a></li>
+        <li><a href="app/">קבצים מכתב יד קדשו</a></li>
+        <li><a href="app/">קבצים מכתב יד קדשו כרך ב</a></li>
+        <li><a href="app/">שמונה קבצים</a></li>
+        </ul>
+      </section>
+      <section class="card cat">
+        <header><i>✉</i><b>אגרות</b></header>
+        <ul>
+        <li><a href="app/">אגרות הראיה ה</a></li>
+        <li><a href="app/">אגרות הראי״ה</a></li>
+        </ul>
+      </section>
+      <section class="card cat">
+        <header><i>♪</i><b>שירה</b></header>
+        <ul>
+        <li><a href="app/">שירת הראי״ה</a></li>
+        </ul>
+      </section>
+    </div>
+    <div class="col">
+      <section class="card cat">
+        <header><i>❦</i><b>מוסר ומידות</b></header>
+        <ul>
+        <li><a href="app/">מוסר אביך</a></li>
+        <li><a href="app/">מידות הראי״ה</a></li>
+        </ul>
+      </section>
+      <section class="card cat">
+        <header><i>✡</i><b>תפילה ומועדים</b></header>
+        <ul>
+        <li><a href="app/">עולת ראי״ה</a></li>
+        </ul>
+      </section>
+      <section class="card cat">
+        <header><i>❝</i><b>דרשות ומאמרים</b></header>
+        <ul>
+        <li><a href="app/">הרצאת הרב (הראי״ה קוק, תרפ״א)</a></li>
+        <li><a href="app/">מאמר הדור</a></li>
+        <li><a href="app/">מאמרי הראי״ה</a></li>
+        <li><a href="app/">מדבר שור</a></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <footer>
+    <p>הטקסטים מגיעים מוויקיטקסט העברי ומספריא, ונכללות רק מהדורות שהרישיון שלהן מוצהר במקור. פירוט הרישיונות לכל ספר נמצא בלשונית „אודות” שבתוכנה.</p>
+    <p>נשמח לקבל טקסטים נוספים מכתבי הרב, שאין בהם בעיה של זכויות יוצרים.</p>
+    <p>קוד התוכנה ברישיון MIT · <a href="https://github.com/AshiVered/kitvei-harayah">GitHub</a> · דיוקן הרב: צילום משנת 1924, אוסף ספריית הקונגרס (נחלת הכלל).</p>
+    <p>הגרסה המקוונת אינה שומרת מידע אישי; הערות, סימניות והיסטוריית קריאה זמינות בתוכנה למחשב.</p>
+  </footer>
+</main>
+
+</body>
+</html>

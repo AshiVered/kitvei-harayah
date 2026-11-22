@@ -1,0 +1,304 @@
+{
+ "categories": [
+  "אמונה",
+  "קבצים ופנקסים",
+  "מוסר ומידות",
+  "תפילה ומועדים",
+  "דרשות ומאמרים",
+  "אגרות",
+  "שירה",
+  "הלכה"
+ ],
+ "books": [
+  {
+   "id": "wikisource-eder-hayakar",
+   "title": "אדר היקר",
+   "category": "אמונה",
+   "stats": {
+    "sections": 7,
+    "paragraphs": 285,
+    "chars": 110823
+   }
+  },
+  {
+   "id": "sefaria-orot",
+   "title": "אורות",
+   "category": "אמונה",
+   "stats": {
+    "sections": 154,
+    "paragraphs": 416,
+    "chars": 334512
+   }
+  },
+  {
+   "id": "wikisource-orot-haemunah",
+   "title": "אורות האמונה",
+   "category": "אמונה",
+   "stats": {
+    "sections": 18,
+    "paragraphs": 249,
+    "chars": 191820
+   }
+  },
+  {
+   "id": "sefaria-orot-hakodesh",
+   "title": "אורות הקודש",
+   "category": "אמונה",
+   "stats": {
+    "sections": 24,
+    "paragraphs": 458,
+    "chars": 424088
+   }
+  },
+  {
+   "id": "sefaria-orot-hatorah",
+   "title": "אורות התורה",
+   "category": "אמונה",
+   "stats": {
+    "sections": 14,
+    "paragraphs": 120,
+    "chars": 81909
+   }
+  },
+  {
+   "id": "wikisource-orot-hateshuvah",
+   "title": "אורות התשובה",
+   "category": "אמונה",
+   "stats": {
+    "sections": 13,
+    "paragraphs": 53,
+    "chars": 11739
+   }
+  },
+  {
+   "id": "wikisource-chavash-peer",
+   "title": "חבש פאר",
+   "category": "אמונה",
+   "stats": {
+    "sections": 13,
+    "paragraphs": 132,
+    "chars": 47132
+   }
+  },
+  {
+   "id": "wikisource-chazon-hatzimchonut",
+   "title": "חזון הצמחונות והשלום",
+   "category": "אמונה",
+   "stats": {
+    "sections": 19,
+    "paragraphs": 20,
+    "chars": 38978
+   }
+  },
+  {
+   "id": "wikisource-ein-ayah",
+   "title": "עין איה",
+   "category": "אמונה",
+   "stats": {
+    "sections": 1979,
+    "paragraphs": 4155,
+    "chars": 3053826
+   }
+  },
+  {
+   "id": "wikisource-ikvei-hatzon",
+   "title": "עקבי הצאן",
+   "category": "אמונה",
+   "stats": {
+    "sections": 8,
+    "paragraphs": 42,
+    "chars": 86426
+   }
+  },
+  {
+   "id": "wikisource-rosh-milin",
+   "title": "ראש מילין",
+   "category": "אמונה",
+   "stats": {
+    "sections": 198,
+    "paragraphs": 193,
+    "chars": 122740
+   }
+  },
+  {
+   "id": "wikisource-ktav-yad",
+   "title": "מכתב יד הראי״ה",
+   "category": "קבצים ופנקסים",
+   "stats": {
+    "sections": 5,
+    "paragraphs": 9,
+    "chars": 2615
+   }
+  },
+  {
+   "id": "wikisource-arpilei-tohar",
+   "title": "ערפלי טוהר",
+   "category": "קבצים ופנקסים",
+   "stats": {
+    "sections": 72,
+    "paragraphs": 3619,
+    "chars": 198952
+   }
+  },
+  {
+   "id": "wikisource-pinkas-13",
+   "title": "פנקס יג",
+   "category": "קבצים ופנקסים",
+   "stats": {
+    "sections": 175,
+    "paragraphs": 215,
+    "chars": 157210
+   }
+  },
+  {
+   "id": "wikisource-kevatzim-ktav-yad",
+   "title": "קבצים מכתב יד קדשו",
+   "category": "קבצים ופנקסים",
+   "stats": {
+    "sections": 216,
+    "paragraphs": 947,
+    "chars": 190092
+   }
+  },
+  {
+   "id": "wikisource-kevatzim-ktav-yad-2",
+   "title": "קבצים מכתב יד קדשו כרך ב",
+   "category": "קבצים ופנקסים",
+   "stats": {
+    "sections": 463,
+    "paragraphs": 548,
+    "chars": 239384
+   }
+  },
+  {
+   "id": "wikisource-shemonah-kevatzim",
+   "title": "שמונה קבצים",
+   "category": "קבצים ופנקסים",
+   "stats": {
+    "sections": 2963,
+    "paragraphs": 2935,
+    "chars": 1981484
+   }
+  },
+  {
+   "id": "sefaria-musar-avikha",
+   "title": "מוסר אביך",
+   "category": "מוסר ומידות",
+   "stats": {
+    "sections": 30,
+    "paragraphs": 261,
+    "chars": 79616
+   }
+  },
+  {
+   "id": "sefaria-middot-hara-ayah",
+   "title": "מידות הראי״ה",
+   "category": "מוסר ומידות",
+   "stats": {
+    "sections": 20,
+    "paragraphs": 145,
+    "chars": 50035
+   }
+  },
+  {
+   "id": "wikisource-olat-reiyah",
+   "title": "עולת ראי״ה",
+   "category": "תפילה ומועדים",
+   "stats": {
+    "sections": 19,
+    "paragraphs": 628,
+    "chars": 250832
+   }
+  },
+  {
+   "id": "wikisource-hartzaat-harav",
+   "title": "הרצאת הרב (הראי״ה קוק, תרפ״א)",
+   "category": "דרשות ומאמרים",
+   "stats": {
+    "sections": 1,
+    "paragraphs": 41,
+    "chars": 34013
+   }
+  },
+  {
+   "id": "sefaria-ma-amar-hador",
+   "title": "מאמר הדור",
+   "category": "דרשות ומאמרים",
+   "stats": {
+    "sections": 1,
+    "paragraphs": 18,
+    "chars": 18266
+   }
+  },
+  {
+   "id": "wikisource-maamarei",
+   "title": "מאמרי הראי״ה",
+   "category": "דרשות ומאמרים",
+   "stats": {
+    "sections": 148,
+    "paragraphs": 446,
+    "chars": 571314
+   }
+  },
+  {
+   "id": "wikisource-midbar-shur",
+   "title": "מדבר שור",
+   "category": "דרשות ומאמרים",
+   "stats": {
+    "sections": 57,
+    "paragraphs": 152,
+    "chars": 580335
+   }
+  },
+  {
+   "id": "wikisource-igrot-5",
+   "title": "אגרות הראיה ה",
+   "category": "אגרות",
+   "stats": {
+    "sections": 12,
+    "paragraphs": 75,
+    "chars": 20219
+   }
+  },
+  {
+   "id": "wikisource-igrot",
+   "title": "אגרות הראי״ה",
+   "category": "אגרות",
+   "stats": {
+    "sections": 2,
+    "paragraphs": 2,
+    "chars": 3572
+   }
+  },
+  {
+   "id": "wikisource-shirat-hareiyah",
+   "title": "שירת הראי״ה",
+   "category": "שירה",
+   "stats": {
+    "sections": 49,
+    "paragraphs": 88,
+    "chars": 9502
+   }
+  },
+  {
+   "id": "wikisource-etz-hadar",
+   "title": "עץ הדר",
+   "category": "הלכה",
+   "stats": {
+    "sections": 2,
+    "paragraphs": 13,
+    "chars": 3090
+   }
+  },
+  {
+   "id": "wikisource-shabbat-haaretz",
+   "title": "שבת הארץ",
+   "category": "הלכה",
+   "stats": {
+    "sections": 3,
+    "paragraphs": 12,
+    "chars": 5507
+   }
+  }
+ ]
+}
