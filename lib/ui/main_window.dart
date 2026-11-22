@@ -45,6 +45,19 @@ class _MainWindowState extends State<MainWindow> {
     super.dispose();
   }
 
+  bool _firstLayout = true;
+
+  /// Phones and narrow windows get the compact layout (bottom bar, full-screen panels).
+  bool _isCompact(BuildContext context) {
+    final compact = MediaQuery.sizeOf(context).width < compactBreakpoint;
+    ws.compact = compact;
+    if (_firstLayout) {
+      _firstLayout = false;
+      if (compact) ws.panelOpen = false; // open on the home page, not on a full-screen panel
+    }
+    return compact;
+  }
+
   @override
   Widget build(BuildContext context) {
     return WorkspaceScope(
@@ -62,7 +75,7 @@ class _MainWindowState extends State<MainWindow> {
           autofocus: true,
           child: ListenableBuilder(
             listenable: ws,
-            builder: (context, _) => Scaffold(
+            builder: (context, _) => _isCompact(context) ? const _CompactLayout() : Scaffold(
               body: Column(children: [
                 Expanded(
                   child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -82,6 +95,163 @@ class _MainWindowState extends State<MainWindow> {
       ),
     );
   }
+}
+
+// ---------------------------------------------------------------- compact layout (phones)
+
+const compactBreakpoint = 720.0;
+
+class _CompactLayout extends StatelessWidget {
+  const _CompactLayout();
+
+  static const _panels = [
+    (SidePanel.library, Icons.local_library_outlined, 'ספרייה'),
+    (SidePanel.toc, Icons.format_list_bulleted, 'תוכן'),
+    (SidePanel.search, Icons.search, 'חיפוש'),
+    (SidePanel.bookmarks, Icons.bookmarks_outlined, 'סימניות'),
+    (SidePanel.notes, Icons.sticky_note_2_outlined, 'הערות'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final ws = WorkspaceScope.of(context);
+    final p = context.pal;
+    final title = ws.panelOpen
+        ? _panels.firstWhere((x) => x.$1 == ws.panel).$3
+        : ws.activeTab.title;
+    return Scaffold(
+      body: SafeArea(
+        child: Column(children: [
+          // top bar
+          Container(
+            height: 48,
+            color: p.activity,
+            padding: const EdgeInsetsDirectional.only(start: 6, end: 2),
+            child: Row(children: [
+              if (ws.panelOpen)
+                IconButton(
+                  tooltip: 'סגירה',
+                  icon: Icon(Icons.close, color: p.onActivity),
+                  onPressed: () => ws.showPanel(ws.panel),
+                )
+              else
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 6),
+                  child: Image.asset('assets/icon/icon.png', width: 30, height: 30, filterQuality: FilterQuality.medium),
+                ),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text(title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontFamily: textFont, fontSize: 18, fontWeight: FontWeight.w700, color: p.gold)),
+              ),
+              PopupMenuButton<String>(
+                tooltip: 'תפריט',
+                icon: Icon(Icons.more_vert, color: p.onActivity),
+                onSelected: (v) {
+                  switch (v) {
+                    case 'home':
+                      ws.openStart();
+                    case 'about':
+                      ws.openAbout();
+                    case 'settings':
+                      showSettingsDialog(context);
+                    default:
+                      if (v.startsWith('tab:')) {
+                        ws.activate(int.parse(v.substring(4)));
+                        ws.panelOpen = false;
+                      } else if (v.startsWith('close:')) {
+                        ws.close(int.parse(v.substring(6)));
+                      }
+                  }
+                },
+                itemBuilder: (_) => [
+                  const PopupMenuItem(value: 'home', child: _MenuRow(Icons.home_outlined, 'דף הבית')),
+                  const PopupMenuItem(value: 'settings', child: _MenuRow(Icons.settings_outlined, 'הגדרות')),
+                  const PopupMenuItem(value: 'about', child: _MenuRow(Icons.info_outline, 'אודות')),
+                  if (ws.tabs.length > 1) ...[
+                    const PopupMenuDivider(),
+                    for (var i = 0; i < ws.tabs.length; i++)
+                      PopupMenuItem(
+                        value: 'tab:$i',
+                        child: Row(children: [
+                          Icon(ws.tabs[i].icon, size: 18, color: i == ws.active ? p.gold : null),
+                          const SizedBox(width: 10),
+                          Expanded(child: Text(ws.tabs[i].title, overflow: TextOverflow.ellipsis)),
+                          IconButton(
+                            tooltip: 'סגירה',
+                            iconSize: 16,
+                            visualDensity: VisualDensity.compact,
+                            icon: const Icon(Icons.close),
+                            onPressed: () {
+                              Navigator.pop(context);
+                              ws.close(i);
+                            },
+                          ),
+                        ]),
+                      ),
+                  ],
+                ],
+              ),
+            ]),
+          ),
+          // content: the open document, with a panel over it when one is open
+          Expanded(
+            child: Stack(children: [
+              const Positioned.fill(child: _DocumentArea(showTabs: false)),
+              if (ws.panelOpen)
+                Positioned.fill(
+                  child: ColoredBox(
+                    color: p.panel,
+                    child: IndexedStack(
+                      index: SidePanel.values.indexOf(ws.panel),
+                      children: const [LibraryPanel(), TocPanelHost(), SearchPanel(), BookmarksPanel(), NotesPanel()],
+                    ),
+                  ),
+                ),
+            ]),
+          ),
+          // bottom navigation
+          Container(
+            decoration: BoxDecoration(color: p.activity, border: Border(top: BorderSide(color: p.border))),
+            child: Row(children: [
+              for (final (panel, icon, label) in _panels)
+                Expanded(
+                  child: InkWell(
+                    onTap: () => ws.showPanel(panel),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 7),
+                      child: Column(mainAxisSize: MainAxisSize.min, children: [
+                        Icon(icon,
+                            size: 22,
+                            color: ws.panelOpen && ws.panel == panel ? p.gold : p.onActivity.withValues(alpha: 0.7)),
+                        const SizedBox(height: 2),
+                        Text(label,
+                            style: TextStyle(
+                                fontSize: 11,
+                                color: ws.panelOpen && ws.panel == panel ? p.gold : p.onActivity.withValues(alpha: 0.7))),
+                      ]),
+                    ),
+                  ),
+                ),
+            ]),
+          ),
+        ]),
+      ),
+    );
+  }
+}
+
+class _MenuRow extends StatelessWidget {
+  const _MenuRow(this.icon, this.label);
+
+  final IconData icon;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) =>
+      Row(children: [Icon(icon, size: 18), const SizedBox(width: 10), Text(label)]);
 }
 
 // ---------------------------------------------------------------- activity bar
@@ -242,13 +412,15 @@ class _Splitter extends StatelessWidget {
 // ---------------------------------------------------------------- documents
 
 class _DocumentArea extends StatelessWidget {
-  const _DocumentArea();
+  const _DocumentArea({this.showTabs = true});
+
+  final bool showTabs;
 
   @override
   Widget build(BuildContext context) {
     final ws = WorkspaceScope.of(context);
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      const _TabStrip(),
+      if (showTabs) const _TabStrip(),
       Expanded(
         child: IndexedStack(
           index: ws.active,

@@ -6,6 +6,7 @@
   "תפילה ומועדים",
   "דרשות ומאמרים",
   "אגרות",
+  "שירה",
   "הלכה"
  ],
  "books": [
@@ -100,6 +101,16 @@
    }
   },
   {
+   "id": "wikisource-ikvei-hatzon",
+   "title": "עקבי הצאן",
+   "category": "אמונה",
+   "stats": {
+    "sections": 8,
+    "paragraphs": 42,
+    "chars": 86426
+   }
+  },
+  {
    "id": "wikisource-rosh-milin",
    "title": "ראש מילין",
    "category": "אמונה",
@@ -107,6 +118,16 @@
     "sections": 198,
     "paragraphs": 193,
     "chars": 122740
+   }
+  },
+  {
+   "id": "wikisource-ktav-yad",
+   "title": "מכתב יד הראי״ה",
+   "category": "קבצים ופנקסים",
+   "stats": {
+    "sections": 5,
+    "paragraphs": 9,
+    "chars": 2615
    }
   },
   {
@@ -190,6 +211,16 @@
    }
   },
   {
+   "id": "wikisource-hartzaat-harav",
+   "title": "הרצאת הרב (הראי״ה קוק, תרפ״א)",
+   "category": "דרשות ומאמרים",
+   "stats": {
+    "sections": 1,
+    "paragraphs": 41,
+    "chars": 34013
+   }
+  },
+  {
    "id": "sefaria-ma-amar-hador",
    "title": "מאמר הדור",
    "category": "דרשות ומאמרים",
@@ -237,6 +268,16 @@
     "sections": 2,
     "paragraphs": 2,
     "chars": 3572
+   }
+  },
+  {
+   "id": "wikisource-shirat-hareiyah",
+   "title": "שירת הראי״ה",
+   "category": "שירה",
+   "stats": {
+    "sections": 49,
+    "paragraphs": 88,
+    "chars": 9502
    }
   },
   {

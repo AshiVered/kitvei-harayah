@@ -1,6 +1,6 @@
 /// פרטי התוכנה למסך האודות. לעדכן יחד עם `version:` ב-pubspec.yaml.
 const appName = 'כתבי הראי״ה';
-const appVersion = '0.2.0';
+const appVersion = '0.2.1';
 const appDeveloper = 'Ashi Vered';
 
 /// קוד המקור בגיטהאב (ריק = טרם פורסם).

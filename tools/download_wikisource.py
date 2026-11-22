@@ -71,6 +71,17 @@ BOOKS = [
     ("mitzvot-reiyah", 'מצות ראי"ה', "הלכה"),
     ("etz-hadar", "עץ הדר", "הלכה"),
     ("tov-roi", "טוב רואי", "הלכה"),
+    ("hartzaat-harav", 'הרצאת הרב (הראי"ה קוק, תרפ"א)', "דרשות ומאמרים"),
+]
+
+# Collections of single pages that have no index page of their own on Wikisource:
+# (slug, book title, category, [pages in order]). Each page becomes a chapter.
+COLLECTIONS = [
+    ("shirat-hareiyah", 'שירת הראי"ה', "שירה", [
+        "מגד ירחים", "אליהו הנביא מהרב אברהם יצחק הכהן קוק", "האמונה", "האריה בסוגר",
+        "וחלשה היא אלמת", "לחשי ההויה", "תחיה",
+    ]),
+    ("ktav-yad", 'מכתב יד הראי"ה', "קבצים ופנקסים", ['הראי"ה קוק - כתב יד']),
 ]
 
 MAX_PAGES_PER_BOOK = 4000
@@ -115,8 +126,14 @@ def fetch_wikitext(titles):
 LINK = re.compile(r"\[\[([^\[\]|#]+)(?:#[^\[\]|]*)?(?:\|.*?)?\]\]", re.S)
 
 
+# Links written with the subpage template: {{קישור לדף משנה|Book|Chapter}}
+SUBPAGE_TPL = re.compile(r"\{\{\s*קישור לדף משנה\s*\|([^|}]+)\|([^|}]+)")
+
+
 def links_in_order(page_title, wikitext):
     res = []
+    for m in SUBPAGE_TPL.finditer(wikitext):
+        res.append(f"{m.group(1).strip()}/{m.group(2).strip()}".replace("_", " "))
     for m in LINK.finditer(wikitext):
         t = m.group(1).strip().replace("_", " ")
         if not t:
@@ -435,6 +452,44 @@ def build_book(slug, root_req, category, roots_map, all_roots):
     return book
 
 
+def build_collection(slug, title, category, pages):
+    """A book made of separate pages, each page one chapter titled by its page name."""
+    print(f"== collection {title}")
+    got = fetch_wikitext(pages)
+    present = [(p, got[p][1]) for p in pages if got[p][1] is not None]
+    for p in pages:
+        if got[p][1] is None:
+            print(f"  missing page: {p}")
+    html = render_pages(present, present[0][0])
+    sections = []
+    for p, _ in present:
+        blocks = postprocess_page(html_to_blocks(html.get(p, "")))
+        name = "" if len(present) == 1 else p.replace("מהרב אברהם יצחק הכהן קוק", "").strip()
+        cur = {"t": name, "l": 0, "p": []}
+        sections.append(cur)
+        for b in blocks:
+            if b[0] == "h":
+                cur = {"t": b[2], "l": b[1], "p": []}
+                sections.append(cur)
+            else:
+                cur["p"].append(b[1])
+    sections = [s for i, s in enumerate(sections)
+                if s["p"] or (i + 1 < len(sections) and sections[i + 1]["l"] > s["l"])]
+    book = {
+        "id": f"wikisource-{slug}",
+        "title": title,
+        "source": "wikisource",
+        "sourceUrl": "https://he.wikisource.org/wiki/" + present[0][0].replace(" ", "_"),
+        "license": "ויקיטקסט – CC BY-SA 4.0; טקסט המקור בנחלת הכלל",
+        "category": category,
+        "note": None,
+        "pages": len(present),
+        "sections": sections,
+    }
+    save_book(book)
+    return book
+
+
 def main():
     only = set(sys.argv[1:])
     resolved = fetch_wikitext([t for _, t, _ in BOOKS])
@@ -445,6 +500,15 @@ def main():
             continue
         try:
             b = build_book(slug, title, cat, resolved, all_roots)
+            summary.append((title, b["stats"] if b else None))
+        except Exception as e:
+            print(f"!! failed {title}: {e}")
+            summary.append((title, f"error {e}"))
+    for slug, title, cat, pages in COLLECTIONS:
+        if only and slug not in only:
+            continue
+        try:
+            b = build_collection(slug, title, cat, pages)
             summary.append((title, b["stats"] if b else None))
         except Exception as e:
             print(f"!! failed {title}: {e}")

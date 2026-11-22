@@ -109,6 +109,18 @@
  },
  {
   "group": "אמונה",
+  "book": "עקבי הצאן",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/עקבי_הצאן"
+   }
+  ]
+ },
+ {
+  "group": "אמונה",
   "book": "ראש מילין",
   "editions": [
    {
@@ -116,6 +128,18 @@
     "titleEn": "Hebrew Wikisource",
     "license": "CC-BY-SA",
     "source": "https://he.wikisource.org/wiki/ראש_מילין"
+   }
+  ]
+ },
+ {
+  "group": "קבצים ופנקסים",
+  "book": "מכתב יד הראי״ה",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/הראי\"ה_קוק_-_כתב_יד"
    }
   ]
  },
@@ -217,6 +241,18 @@
  },
  {
   "group": "דרשות ומאמרים",
+  "book": "הרצאת הרב (הראי״ה קוק, תרפ״א)",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/הרצאת_הרב_(הראי\"ה_קוק,_תרפ\"א)"
+   }
+  ]
+ },
+ {
+  "group": "דרשות ומאמרים",
   "book": "מאמר הדור",
   "editions": [
    {
@@ -272,6 +308,18 @@
     "titleEn": "Hebrew Wikisource",
     "license": "CC-BY-SA",
     "source": "https://he.wikisource.org/wiki/אגרות_הראי\"ה"
+   }
+  ]
+ },
+ {
+  "group": "שירה",
+  "book": "שירת הראי״ה",
+  "editions": [
+   {
+    "title": "ויקיטקסט העברי",
+    "titleEn": "Hebrew Wikisource",
+    "license": "CC-BY-SA",
+    "source": "https://he.wikisource.org/wiki/מגד_ירחים"
    }
   ]
  },

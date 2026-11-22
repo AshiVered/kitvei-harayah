@@ -14,6 +14,9 @@ import 'workspace.dart';
 
 const _pageWidth = 820.0;
 
+/// Phones / narrow windows: smaller margins, lighter toolbar.
+bool _compact(BuildContext context) => MediaQuery.sizeOf(context).width < 720;
+
 /// A book open in a tab: toolbar, find bar and the reading page.
 class ReaderView extends StatefulWidget {
   const ReaderView({super.key, required this.controller});
@@ -300,12 +303,13 @@ class _ReaderViewState extends State<ReaderView> {
               ),
               () => app.toggleBookmark(book, c.loc),
             ),
-          Container(
-            width: 1,
-            height: 20,
-            color: p.border,
-            margin: const EdgeInsets.symmetric(horizontal: 6),
-          ),
+          if (!_compact(context))
+            Container(
+              width: 1,
+              height: 20,
+              color: p.border,
+              margin: const EdgeInsets.symmetric(horizontal: 6),
+            ),
           tool(
             app.showNiqqud ? 'הסתרת ניקוד' : 'הצגת ניקוד',
             Text(
@@ -324,14 +328,15 @@ class _ReaderViewState extends State<ReaderView> {
             const Icon(Icons.text_decrease, size: 20),
             () => _font(app, -2),
           ),
-          SizedBox(
-            width: 28,
-            child: Text(
-              '${app.fontSize.round()}',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12, color: p.muted),
+          if (!_compact(context))
+            SizedBox(
+              width: 28,
+              child: Text(
+                '${app.fontSize.round()}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12, color: p.muted),
+              ),
             ),
-          ),
           tool(
             'הגדלת גופן (Ctrl+=)',
             const Icon(Icons.text_increase, size: 20),
@@ -352,7 +357,7 @@ class _ReaderViewState extends State<ReaderView> {
       child: Row(
         children: [
           SizedBox(
-            width: 320,
+            width: _compact(context) ? 170 : 320,
             child: TextField(
               controller: _findCtl,
               focusNode: _findFocus,
@@ -460,7 +465,9 @@ class _ReaderViewState extends State<ReaderView> {
             child: SizedBox(
               width: _pageWidth,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 56),
+                padding: _compact(context)
+                    ? const EdgeInsetsDirectional.only(start: 30, end: 14)
+                    : const EdgeInsets.symmetric(horizontal: 56),
                 child: child,
               ),
             ),
@@ -693,9 +700,9 @@ class _ReaderViewState extends State<ReaderView> {
         ),
         // Paragraph number in the page margin; click for actions.
         PositionedDirectional(
-          start: -46,
+          start: _compact(context) ? -30 : -46,
           top: 5 + app.fontSize * 0.35,
-          width: 36,
+          width: _compact(context) ? 26 : 36,
           child: SelectionContainer.disabled(
             child: MouseRegion(
               cursor: SystemMouseCursors.click,

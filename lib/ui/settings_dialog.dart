@@ -102,23 +102,36 @@ class _SettingsDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final s = AppScope.of(context);
     final p = context.pal;
-    Widget row(String label, Widget control) => Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 130,
-            child: Text(label, style: const TextStyle(fontSize: 13.5)),
-          ),
-          Expanded(
-            child: Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: control,
+    final narrow = MediaQuery.sizeOf(context).width < 560;
+    Widget row(String label, Widget control) => narrow
+        ? Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(label, style: const TextStyle(fontSize: 13.5)),
+                const SizedBox(height: 6),
+                SizedBox(width: double.infinity, child: control),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
+          )
+        : Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 130,
+                  child: Text(label, style: const TextStyle(fontSize: 13.5)),
+                ),
+                Expanded(
+                  child: Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: control,
+                  ),
+                ),
+              ],
+            ),
+          );
     return Dialog(
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 620),
@@ -274,7 +287,7 @@ class _SettingsDialog extends StatelessWidget {
               ] else ...[
                 const SizedBox(height: 10),
                 Text(
-                  'באתר, ההגדרות חלות רק עליכם ומתאפסות ביציאה מהאתר.',
+                  'באתר, הגדרות התצוגה נשמרות בדפדפן שלכם בלבד.',
                   style: TextStyle(fontSize: 12.5, color: p.muted),
                 ),
               ],

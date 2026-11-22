@@ -192,6 +192,7 @@ IconData categoryIcon(String category) => switch (category) {
       'תפילה ומועדים' => Icons.local_fire_department_outlined,
       'דרשות ומאמרים' => Icons.record_voice_over_outlined,
       'אגרות' => Icons.mail_outline,
+      'שירה' => Icons.music_note_outlined,
       'הלכה' => Icons.gavel_outlined,
       _ => Icons.book_outlined,
     };

@@ -137,7 +137,10 @@ class _TocTreeState extends State<TocTree> {
                     selected: i == current,
                     maxLines: 2,
                     onToggle: kids ? () => setState(() => open ? _expanded.remove(i) : _expanded.add(i)) : null,
-                    onTap: () => widget.controller.jumpTo(Loc(i, -1)),
+                    onTap: () {
+                      widget.controller.jumpTo(Loc(i, -1));
+                      WorkspaceScope.read(context).didNavigate();
+                    },
                   );
                 },
               ),

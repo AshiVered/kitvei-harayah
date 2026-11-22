@@ -74,6 +74,18 @@ class Workspace extends ChangeNotifier {
   int active = 0;
   SidePanel panel = SidePanel.library;
   bool panelOpen = true;
+
+  /// True on phones / narrow windows: panels cover the document, so they close
+  /// as soon as the reader picks something in them.
+  bool compact = false;
+
+  /// Called after navigating from a panel (opening a book, jumping to a chapter).
+  void didNavigate() {
+    if (compact && panelOpen) {
+      panelOpen = false;
+      notifyListeners();
+    }
+  }
   double panelWidth = 300;
   final searchFocus = FocusNode();
 
@@ -137,6 +149,7 @@ class Workspace extends ChangeNotifier {
       tabs.insert(insertAt, t);
       active = insertAt;
     }
+    if (compact) panelOpen = false;
     notifyListeners();
   }
 
@@ -148,6 +161,7 @@ class Workspace extends ChangeNotifier {
     if (i >= 0) {
       active = i;
       if (at != null) tabs[i].reader!.jumpTo(at, highlightQuery: highlight);
+      if (compact) panelOpen = false;
       notifyListeners();
       return;
     }

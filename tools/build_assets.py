@@ -17,7 +17,7 @@ os.makedirs(OUT, exist_ok=True)
 
 CATEGORY_ORDER = [
     "אמונה", "קבצים ופנקסים", "מוסר ומידות",
-    "תפילה ומועדים", "דרשות ומאמרים", "אגרות", "הלכה",
+    "תפילה ומועדים", "דרשות ומאמרים", "אגרות", "שירה", "הלכה",
 ]
 # Categories assigned by the downloaders, merged for display.
 CATEGORY_MERGE = {"ספרי אורות": "אמונה", "אגדה ומחשבה": "אמונה"}
@@ -56,7 +56,8 @@ EDITORIAL_PARAS = re.compile(
     r"|בגליון הבא מופיעה"                 # Wikisource note on a newspaper letter
     r"|חלוקה ל-?\d+ פיסקאות"              # Wikisource's own paragraph division note
     r"|הספר ניתן על ידי העורך והועלה לאתר"  # web upload credit
-    r"|המהדורה המודפסת כוללת)"            # pointer to the printed edition
+    r"|המהדורה המודפסת כוללת"             # pointer to the printed edition
+    r"|ר' מאמר זה במהדורה המבוארת)"         # pointer to Wikisource's annotated edition
 )
 
 
@@ -70,7 +71,11 @@ def drop_editorial(book):
                 continue
             skip_level = None
         t = s["t"].strip()
-        first_ws_intro = book["source"] == "wikisource" and i == 0 and t == "פתיחה"
+        # Wikisource's own short blurb about the book (a long first section is the book's text itself).
+        first_ws_intro = (book["source"] == "wikisource" and i == 0 and t == "פתיחה"
+                          and sum(len(x) for x in s["p"]) < 1500)
+        if book["source"] == "wikisource" and i == 0 and t == "פתיחה" and not first_ws_intro:
+            s["t"] = ""
         if first_ws_intro:  # drop only the blurb itself; the book's chapters may sit beneath it
             continue
         if EDITORIAL_TITLES.match(t) or t in by_book:

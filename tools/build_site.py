@@ -19,7 +19,7 @@ from PIL import Image
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ICONS = {  # simple inline glyphs matching the app's category icons
     "אמונה": "☀", "קבצים ופנקסים": "✎", "מוסר ומידות": "❦", "תפילה ומועדים": "✡",
-    "דרשות ומאמרים": "❝", "אגרות": "✉", "הלכה": "⚖",
+    "דרשות ומאמרים": "❝", "אגרות": "✉", "שירה": "♪", "הלכה": "⚖",
 }
 
 
@@ -30,9 +30,12 @@ def main():
     ap.add_argument("--repo", required=True)
     ap.add_argument("--out", default=os.path.join(ROOT, "build", "site"))
     ap.add_argument("--direct-download", action="store_true", help="link the button straight to the release zip")
+    ap.add_argument("--download-version", help="release to link to (default: version in pubspec.yaml)")
     a = ap.parse_args()
 
     version = re.search(r"^version:\s*([0-9.]+)", open(os.path.join(ROOT, "pubspec.yaml"), encoding="utf-8").read(), re.M).group(1)
+    if a.download_version:  # e.g. the newest release whose files are already attached
+        version = a.download_version
     repo_url = f"https://github.com/{a.user}/{a.repo}"
     asset = f"KitveiHaRaayah-{version}-windows-x64.zip"
     # The release page (always valid); pass --direct-download once the zip is attached to the release.

@@ -45,11 +45,11 @@ class LastRead {
 /// Global application state: settings, bookmarks, notes and reading history.
 class AppState extends ChangeNotifier {
   AppState(this.library, this._prefs, {this.persistent = true}) : search = SearchEngine(library) {
-    if (persistent) _restore();
+    _restore();
   }
 
-  /// False on the web: nothing personal is stored (no bookmarks, notes, history or backup),
-  /// and display settings last only until the visitor leaves the site.
+  /// False on the web: nothing personal is stored (no bookmarks, notes, history or backup).
+  /// Display settings (font, size, niqqud, theme) are kept in the visitor's own browser.
   final bool persistent;
 
   /// Bookmarks, notes and history are desktop-only features.
@@ -86,6 +86,7 @@ class AppState extends ChangeNotifier {
       lineHeight = _prefs.getDouble('lineHeight') ?? lineHeight;
       showNiqqud = _prefs.getBool('niqqud') ?? true;
       justify = _prefs.getBool('justify') ?? true;
+      if (!persistent) return; // web: display settings only
       final bm = _prefs.getString('bookmarks');
       if (bm != null) {
         bookmarks.addAll((jsonDecode(bm) as List)
@@ -110,12 +111,13 @@ class AppState extends ChangeNotifier {
   }
 
   void _persistSettings() {
-    _store?.setInt('themeMode', themeMode.index);
-    _store?.setInt('font', font.index);
-    _store?.setDouble('fontSize', fontSize);
-    _store?.setDouble('lineHeight', lineHeight);
-    _store?.setBool('niqqud', showNiqqud);
-    _store?.setBool('justify', justify);
+    // Display settings are saved everywhere, the web included.
+    _prefs.setInt('themeMode', themeMode.index);
+    _prefs.setInt('font', font.index);
+    _prefs.setDouble('fontSize', fontSize);
+    _prefs.setDouble('lineHeight', lineHeight);
+    _prefs.setBool('niqqud', showNiqqud);
+    _prefs.setBool('justify', justify);
   }
 
   void update(void Function(AppState s) change) {
